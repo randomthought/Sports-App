@@ -13,9 +13,23 @@ services:
     ports:
       - 8080:8080
 
-  app:
+  flask:
     build: .
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+    command: [
+      "runserver"
+    ]
+
+  react_app:
+    build: ./static
     ports:
       - 3000:3000
     depends_on:
       - db
+    command: [
+      "npm",
+      "start"
+    ]
