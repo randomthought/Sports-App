@@ -6,4 +6,4 @@ WORKDIR /app
 RUN npm install
 
 # Expose Port
-Expose 3000
+# Expose 3000

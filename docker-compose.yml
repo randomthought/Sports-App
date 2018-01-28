@@ -1,6 +1,8 @@
-version: '3.1'
+version: '3.4'
+networks:
+    default:
 services:
-  db:
+  database:
     image: postgres
     restart: always
     environment:
@@ -13,23 +15,26 @@ services:
     ports:
       - 8080:8080
 
-  flask:
+  backend:
     build: .
     ports:
       - 5000:5000
     depends_on:
-      - db
+      - database
+    environment:
+      - DATABASE_URL=postgresql://username:password@database:5432/mydatabase
     command: [
       "runserver"
+      # "create_db"
     ]
 
   react_app:
     build: ./static
     ports:
       - 3000:3000
-    depends_on:
-      - db
     command: [
       "npm",
       "start"
     ]
+    expose:
+      - 3000
