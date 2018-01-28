@@ -27,10 +27,7 @@ app.use(require('morgan')('short'));
 }());
 
 app.all(/^\/api\/(.*)/, (req, res) => {
-  proxy.web(req, res, { target: 'http://backend:5000' });
-  // proxy.web(req, res, { target: 'http://172.18.0.5:5000' }, (e) => {
-  //   console.log(e);
-  // });
+    proxy.web(req, res, { target: 'http://backend:5000' });
 });
 
 app.get(/.*/, (req, res) => {

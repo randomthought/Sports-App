@@ -17,8 +17,6 @@ services:
 
   backend:
     build: .
-    ports:
-      - 5000:5000
     depends_on:
       - database
     environment:
@@ -31,7 +29,7 @@ services:
   react_app:
     build: ./static
     ports:
-      - 3000:3000
+      - 80:3000
     command: [
       "npm",
       "start"
