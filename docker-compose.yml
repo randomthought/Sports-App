@@ -1,13 +1,20 @@
 version: '3.4'
+
 networks:
     default:
+
 services:
   database:
-    image: postgres
+    image: mysql:5.7
+    container_name: mysql
     restart: always
+    volumes:
+      - db-data:/var/lib/mysql/data
     environment:
-      POSTGRES_USER: username
-      POSTGRES_PASSWORD: password
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=mydatabase
+      - MYSQL_USER=username
+      - MYSQL_PASSWORD=password
 
   adminer:
     image: adminer
@@ -20,10 +27,10 @@ services:
     depends_on:
       - database
     environment:
-      - DATABASE_URL=postgresql://username:password@database:5432/mydatabase
+      - DATABASE_URL=mysql+mysqlconnector://username:password@database/mydatabase
     command: [
       "runserver"
-      # "create_db"
+      #"create_db"
     ]
 
   react_app:
@@ -36,3 +43,6 @@ services:
     ]
     expose:
       - 3000
+
+volumes:
+  db-data:
