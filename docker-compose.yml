@@ -1,0 +1,38 @@
+version: '3.4'
+networks:
+    default:
+services:
+  database:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  backend:
+    build: .
+    depends_on:
+      - database
+    environment:
+      - DATABASE_URL=postgresql://username:password@database:5432/mydatabase
+    command: [
+      "runserver"
+      # "create_db"
+    ]
+
+  react_app:
+    build: ./static
+    ports:
+      - 80:3000
+    command: [
+      "npm",
+      "start"
+    ]
+    expose:
+      - 3000
