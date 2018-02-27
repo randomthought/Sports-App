@@ -42,3 +42,40 @@ export function has_github_token(token) {
 export function data_about_user(token) {
     return axios.get('/api/user', tokenConfig(token));
 }
+
+// Retrieve 2016-2017 Season
+// Get returned output defined in app.py file
+export function nba_2016_2017_Season() {
+    return axios.get('/api/nba_2016_2017');
+}
+
+// Retrieve competitions 
+// from returned ouput defined in app.py file
+export function competitions() {
+    return axios.get('/api/competitions');
+}
+
+// Retrieve premier league teams 
+// from returned ouput defined in app.py file
+export function premier_league() {
+    return axios.get('/api/premier_league');
+}
+
+// Retrieve Manchester United FC 
+// from returned ouput defined in app.py file
+export function manchester_united() {
+    return axios.get('/api/manchester_united');
+}
+
+// Retrieve Manchester United Players
+// from returned ouput defined in app.py file
+export function manchester_united_players() {
+    return axios.get('/api/manchester_united_players');
+}
+
+// Retrieve Manchester United Home fixtures
+// from returned ouput defined in app.py file
+export function manchester_united_home_fixtures() {
+    return axios.get('/api/manchester_united_home_fixtures');
+}
+
