@@ -15,7 +15,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-class Analytics extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class Analytics extends React.Component { // eslint-disable-line react/prefer-stateless
     render() {
         return (
             <div className="col-md-8">
