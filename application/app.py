@@ -3,6 +3,10 @@ from .models import User
 from index import app, db
 from sqlalchemy.exc import IntegrityError
 from .utils.auth import generate_token, requires_auth, verify_token
+# import MySportsFeed object
+from ohmysportsfeedspy import MySportsFeeds
+import http.client
+import json
 
 
 @app.route('/', methods=['GET'])
@@ -12,6 +16,7 @@ def index():
 
 @app.route('/<path:path>', methods=['GET'])
 def any_root_path(path):
+    #index.html
     return render_template('index.html')
 
 
@@ -62,3 +67,64 @@ def is_token_valid():
         return jsonify(token_is_valid=True)
     else:
         return jsonify(token_is_valid=False), 403
+
+# ***MySportsFeed Operations***
+msf = MySportsFeeds(version="1.0")
+
+# authenticate using MySportsFeed account credentials 
+msf.authenticate("umucproject", "umucproject")
+
+# Using https://github.com/MySportsFeeds/mysportsfeeds-python as guidence 
+# make requests, specifying: league, season, feed, format etc.
+# get data from NBA season 2016-2017
+# get player gamelogs for Stephen Curry
+@app.route("/api/nba_2016_2017", methods=["GET"])  
+def get_nba_2016_2017_Season():
+    output = msf.msf_get_data(league='nba',season='2016-2017-regular',feed='player_gamelogs',format='json',player='stephen-curry')
+    return jsonify(output)
+
+# Connect to Football Data API
+# Using https://api.football-data.org/documentation as guidence
+connection = http.client.HTTPConnection('api.football-data.org')
+headers = { 'X-Auth-Token': '5cbb007031974aa591abfe4102d69473', 'X-Response-Control': 'minified' }
+
+# List all available competitions
+# get competitions
+@app.route("/api/competitions", methods=["GET"])
+def get_competitions():
+    connection.request('GET', '/v1/competitions', None, headers )
+    response = json.loads(connection.getresponse().read().decode())
+    return jsonify(response)
+
+# List all teams for a certain competition
+# get premier league teams
+@app.route("/api/premier_league", methods=["GET"])
+def get_premier_league():
+    connection.request('GET', '/v1/competitions/398/teams', None, headers )
+    response = json.loads(connection.getresponse().read().decode())
+    return jsonify(response)
+
+# Show one team
+# get Manchester United FC
+@app.route("/api/manchester_united", methods=["GET"])
+def get_manchester_united():
+    connection.request('GET', '/v1/teams/66', None, headers )
+    response = json.loads(connection.getresponse().read().decode())
+    return jsonify(response)
+
+# Show all players for a certain team
+# get Manchester United players
+@app.route("/api/manchester_united_players", methods=["GET"])
+def get_manchester_united_players():
+    connection.request('GET', '/v1/teams/66/players', None, headers )
+    response = json.loads(connection.getresponse().read().decode())
+    return jsonify(response)
+
+# Show all fixtures for a certain team
+# get Manchester United 2015/16 Home fixtures
+@app.route("/api/manchester_united_home_fixtures", methods=["GET"])
+def get_manchester_united_home_fixtures():
+    connection.request('GET', '/v1/teams/66/fixtures?timeFrame=n14&venue=home', None, headers )
+    response = json.loads(connection.getresponse().read().decode())
+    return jsonify(response)
+
