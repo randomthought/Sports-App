@@ -61,21 +61,27 @@ export function premier_league() {
     return axios.get('/api/premier_league');
 }
 
-// Retrieve Manchester United FC 
+// Retrieve team
 // from returned ouput defined in app.py file
-export function manchester_united() {
-    return axios.get('/api/manchester_united');
+export function show_team(team_id) {
+    return axios.post('/api/show_team', {
+        team_id,
+    });
 }
 
-// Retrieve Manchester United Players
+// Retrieve Players
 // from returned ouput defined in app.py file
-export function manchester_united_players() {
-    return axios.get('/api/manchester_united_players');
+export function players(players_id) {
+    return axios.post('/api/players', {
+        players_id,
+    });
 }
 
-// Retrieve Manchester United Home fixtures
+// Retrieve fixtures
 // from returned ouput defined in app.py file
-export function manchester_united_home_fixtures() {
-    return axios.get('/api/manchester_united_home_fixtures');
+export function fixtures(fixture_id) {
+    return axios.post('/api/fixtures', {
+        fixture_id,
+    });
 }
 
