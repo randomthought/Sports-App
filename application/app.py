@@ -92,7 +92,7 @@ headers = { 'X-Auth-Token': '5cbb007031974aa591abfe4102d69473', 'X-Response-Cont
 # get competitions
 @app.route("/api/competitions", methods=["GET"])
 def get_competitions():
-    connection.request('GET', '/v1/competitions', None, headers )
+    connection.request('GET', '/v1/competitions/', None, headers )
     response = json.loads(connection.getresponse().read().decode())
     return jsonify(response)
 
@@ -105,26 +105,41 @@ def get_premier_league():
     return jsonify(response)
 
 # Show one team
-# get Manchester United FC
-@app.route("/api/manchester_united", methods=["GET"])
-def get_manchester_united():
-    connection.request('GET', '/v1/teams/66', None, headers )
+@app.route("/api/show_team", methods=["POST"])
+def get_show_team():
+    # retrieve incoming json
+    incoming = request.get_json()
+    # store retrieved value into variable
+    team_id = incoming(["team_id"])
+
+    connection.request('GET', '/v1/teams/{id}'.format(id=team_id), None, headers )
     response = json.loads(connection.getresponse().read().decode())
     return jsonify(response)
 
 # Show all players for a certain team
-# get Manchester United players
-@app.route("/api/manchester_united_players", methods=["GET"])
-def get_manchester_united_players():
-    connection.request('GET', '/v1/teams/66/players', None, headers )
+# get players
+@app.route("/api/players", methods=["POST"])
+def get_players():
+    # retrieve incoming json
+    incoming = request.get_json()
+    # store retrieved value into variable
+    players_id = incoming(["players_id"])
+
+    connection.request('GET', '/v1/teams/{id}/players'.format(id=players_id), None, headers )
     response = json.loads(connection.getresponse().read().decode())
     return jsonify(response)
 
 # Show all fixtures for a certain team
-# get Manchester United 2015/16 Home fixtures
-@app.route("/api/manchester_united_home_fixtures", methods=["GET"])
-def get_manchester_united_home_fixtures():
-    connection.request('GET', '/v1/teams/66/fixtures?timeFrame=n14&venue=home', None, headers )
+# get fixtures
+@app.route("/api/fixtures", methods=["POST"])
+def get_fixtures():
+    # retrieve incoming json
+    incoming = request.get_json()
+    # store retrieved value into variable
+    fixture_id = incoming(["fixture_id"])
+
+    connection.request('GET', '/v1/teams/{id}/fixtures/'.format(id=fixture_id), None, headers )
     response = json.loads(connection.getresponse().read().decode())
     return jsonify(response)
 
+    
