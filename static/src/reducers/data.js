@@ -84,9 +84,9 @@ export function fetchPremierLeague() {
 }
 
 // fetch manchester_united data
-export function fetchManchesterUnited() {
+export function fetchTeam(id) {
     return (dispatch) => {
-        manchester_united().then(parseJSON).then(response => {
+        show_team(id).then(parseJSON).then(response => {
                 dispatch(response.result);
             });
             // We are not catching errors for now
@@ -100,9 +100,9 @@ export function fetchManchesterUnited() {
 }
 
 // fetch manchester_united_players data
-export function fetchManchesterUnitedPlayers() {
+export function fetchPlayers(id) {
     return (dispatch) => {
-        manchester_united_players().then(parseJSON).then(response => {
+        players(id).then(parseJSON).then(response => {
                 dispatch(response.result);
             });
             // We are not catching errors for now
@@ -116,9 +116,9 @@ export function fetchManchesterUnitedPlayers() {
 }
 
 // fetch manchester_united_home_fixtures data
-export function fetchManchesterUnitedHomeFixtures() {
+export function fetchFixtures(id) {
     return (dispatch) => {
-        manchester_united_home_fixtures().then(parseJSON).then(response => {
+        fixtures(id).then(parseJSON).then(response => {
                 dispatch(response.result);
             });
             // We are not catching errors for now
