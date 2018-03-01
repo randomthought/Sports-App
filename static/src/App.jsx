@@ -7,6 +7,7 @@ import MenuItem from "material-ui/MenuItem";
 import { Route, Redirect, Link } from "react-router-dom";
 import LeageTable from "./routes/LeageTable.jsx";
 import Paper from "material-ui/Paper";
+import Team from "./routes/Team.jsx";
 
 const paperStyle = {
     margin: 20,
@@ -43,8 +44,7 @@ class App extends Component {
                             <Link to="/table">Leage Table</Link>
                         </MenuItem>
                     </Drawer>
-                    <Route exact path="/" render={() => <Home />} />
-                    <Route path="/dashboard" render={() => <Dashboard />} />
+                    <Route exact path="/" render={() => <LeageTable />} />
                     <Route path="/table" render={() => <LeageTable />} />
                     <Route path="/team" render={() => <Team />} />
                 </div>
