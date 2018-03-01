@@ -21,7 +21,7 @@ const styles = {
         margin: "20px auto 10px"
     },
     paperStye: {
-        maxWidth: "1500px",
+        maxWidth: "1200px",
         margin: "20px auto 10px",
         textAlign: "center"
     }

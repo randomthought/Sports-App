@@ -10,6 +10,7 @@ import {
 import Avatar from "material-ui/Avatar";
 import Paper from "material-ui/Paper";
 import { Card } from "material-ui/Card";
+import history from "../history.jsx";
 
 const styles = {
     propContainer: {
@@ -21,7 +22,7 @@ const styles = {
         margin: "20px auto 10px"
     },
     paperStyle: {
-        maxWidth: "1500px",
+        maxWidth: "1200px",
         margin: "20px auto 10px",
         textAlign: "center"
     }
@@ -85,9 +86,10 @@ export default class LeageTable extends Component {
                         fixedFooter={this.state.fixedFooter}
                         selectable={this.state.selectable}
                         multiSelectable={this.state.multiSelectable}
-                        onCellClick={event =>
-                            console.log(this.getTeamID(data.standing[event]))
-                        }
+                        onCellClick={event => {
+                            let teamID = this.getTeamID(data.standing[event]);
+                            history.push("/team/" + teamID);
+                        }}
                     >
                         <TableHeader
                             displaySelectAll={this.state.showCheckboxes}

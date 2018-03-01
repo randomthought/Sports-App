@@ -4,11 +4,12 @@ import AppBar from "material-ui/AppBar";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import Drawer from "material-ui/Drawer";
 import MenuItem from "material-ui/MenuItem";
-import { Route, Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 import LeageTable from "./routes/LeageTable.jsx";
 import Team from "./routes/Team.jsx";
+import history from "./history.jsx";
 
-class App extends Component {
+export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = { open: false };
@@ -34,8 +35,12 @@ class App extends Component {
                         open={this.state.open}
                         onRequestChange={open => this.setState({ open })}
                     >
-                        <MenuItem>
-                            <Link to="/table">Leage Table</Link>
+                        <MenuItem
+                            onClick={() => {
+                                history.push("/table");
+                            }}
+                        >
+                            Premier Leage Table
                         </MenuItem>
                     </Drawer>
                     <Route exact path="/" component={LeageTable} />
@@ -46,5 +51,3 @@ class App extends Component {
         );
     }
 }
-
-export default App;
