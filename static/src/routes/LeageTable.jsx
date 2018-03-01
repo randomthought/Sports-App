@@ -22,9 +22,9 @@ const styles = {
         margin: "20px auto 10px"
     },
     paperStyle: {
-        margin: 20,
-        textAlign: "center",
-        display: "inline-block"
+        maxWidth: "1500px",
+        margin: "20px auto 10px",
+        textAlign: "center"
     }
 };
 

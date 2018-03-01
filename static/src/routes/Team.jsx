@@ -21,7 +21,8 @@ const styles = {
         margin: "20px auto 10px"
     },
     paperStye: {
-        margin: 10,
+        maxWidth: "1500px",
+        margin: "20px auto 10px",
         textAlign: "center"
     }
 };
@@ -46,7 +47,7 @@ export default class Team extends Component {
     };
 
     componentDidMount() {
-        fetch("http://api.football-data.org/v1/teams/5" + 66, {
+        fetch("http://api.football-data.org/v1/teams/" + 66, {
             method: "GET",
             headers: {
                 "X-Auth-Token": "d7b8cab537374ee98c55d368fb7bc97c"
@@ -66,42 +67,27 @@ export default class Team extends Component {
     render() {
         return (
             <div>
-                <Row>
-                    <Col xs={12}>
-                        <Row center="xs">
-                            <Paper
-                                style={styles.paperStye}
-                                zDepth={0}
-                                rounded={false}
-                            >
+                <Paper style={styles.paperStye} zDepth={0} rounded={false}>
+                    <Row>
+                        <Col xs={12}>
+                            <Row center="xs">
                                 <Col xs={12}>{this.state.teamInfo}</Col>
-                            </Paper>
-                        </Row>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col xs={12}>
-                        <Row start="xs">
-                            <Col xs={6}>
-                                <Paper
-                                    style={styles.paperStye}
-                                    zDepth={0}
-                                    rounded={false}
-                                >
+                            </Row>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={12}>
+                            <Row start="xs">
+                                <Col xs={6}>
                                     <Players teamID={66} />
-                                </Paper>
-                            </Col>
-                            <Col xs={6}>
-                                {/*
-                                        <Fixtures
-                                                teamID={66}
-                                                fixturesData={fixturesData}
-                                                />
-                                    */}
-                            </Col>
-                        </Row>
-                    </Col>
-                </Row>
+                                </Col>
+                                <Col xs={6}>
+                                    <Fixtures teamID={66} />
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Row>
+                </Paper>
             </div>
         );
     }
@@ -127,14 +113,6 @@ const TeamCard = props => (
                     src="https://i2-prod.manchestereveningnews.co.uk/incoming/article12211477.ece/ALTERNATES/s1200/GettyImages-624342376.jpg"
                     alt=""
                 />
-                {/*
-          <img
-              src="http://studiofutbol.com.ec/wp-content/uploads/2018/02/544.jpg"
-              <img src="http://via.placeholder.com/350x150" alt="" />
-              src=""http://via.placeholder.com/350x150""
-              alt=""
-              />
-        */}
             </CardMedia>
             <CardText>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
