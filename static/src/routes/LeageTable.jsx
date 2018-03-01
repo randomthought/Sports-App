@@ -10,15 +10,21 @@ import {
 } from "material-ui/Table";
 import Avatar from "material-ui/Avatar";
 import Paper from "material-ui/Paper";
+import { Card, CardActions, CardHeader, CardText } from "material-ui/Card";
 
 const styles = {
     propContainer: {
         width: 200,
         overflow: "hidden",
-        margin: "20px auto 0"
+        margin: "auto"
     },
     propToggleHeader: {
         margin: "20px auto 10px"
+    },
+    paperStyle: {
+        margin: 20,
+        textAlign: "center",
+        display: "inline-block"
     }
 };
 
@@ -36,7 +42,14 @@ export default class LeageTable extends Component {
         enableSelectAll: false,
         deselectOnClickaway: true,
         showCheckboxes: false,
-        table: []
+        table: [],
+        paperStyle: {
+            height: 100,
+            width: 100,
+            margin: 20,
+            textAlign: "center",
+            display: "inline-block"
+        }
     };
 
     handleToggle = (event, toggled) => {
@@ -53,7 +66,7 @@ export default class LeageTable extends Component {
         fetch("http://api.football-data.org/v1/soccerseasons/445/leagueTable", {
             method: "GET",
             headers: {
-                "X-Auth-Token": ""
+                "X-Auth-Token": "d7b8cab537374ee98c55d368fb7bc97c"
             }
         })
             .then(results => {
@@ -127,9 +140,6 @@ export default class LeageTable extends Component {
                         </TableBody>
                     </Table>
                 );
-
-                console.log(data);
-
                 this.setState({ table: table });
             })
             .catch(error => {
@@ -140,8 +150,8 @@ export default class LeageTable extends Component {
     render() {
         return (
             <div>
-                <Paper style={styles.paperStye} zDepth={1} rounded={false}>
-                    {this.state.table}
+                <Paper style={styles.paperStyle} zDepth={1} rounded={false}>
+                    <Card>{this.state.table}</Card>
                 </Paper>
             </div>
         );
