@@ -56,14 +56,13 @@ export default class Players extends Component {
         fetch("http://api.football-data.org/v1/teams/" + 66 + "/players", {
             method: "GET",
             headers: {
-                "X-Auth-Token": ""
+                "X-Auth-Token": "d7b8cab537374ee98c55d368fb7bc97c"
             }
         })
             .then(results => {
                 return results.json();
             })
             .then(data => {
-                console.log(data);
                 let players = data.players.map((row, index) => (
                     <TableRow key={index}>
                         <TableRowColumn>{row.name}</TableRowColumn>
