@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
     Table,
     TableBody,
-    TableFooter,
     TableHeader,
     TableHeaderColumn,
     TableRow,
@@ -10,7 +9,7 @@ import {
 } from "material-ui/Table";
 import Avatar from "material-ui/Avatar";
 import Paper from "material-ui/Paper";
-import { Card, CardActions, CardHeader, CardText } from "material-ui/Card";
+import { Card } from "material-ui/Card";
 
 const styles = {
     propContainer: {
@@ -58,6 +57,12 @@ export default class LeageTable extends Component {
         });
     };
 
+    getTeamID = teamStanding => {
+        let teamUrl = teamStanding._links.team.href;
+        let parts = teamUrl.split("/");
+        return parts.pop();
+    };
+
     handleChange = event => {
         this.setState({ height: event.target.value });
     };
@@ -80,7 +85,9 @@ export default class LeageTable extends Component {
                         fixedFooter={this.state.fixedFooter}
                         selectable={this.state.selectable}
                         multiSelectable={this.state.multiSelectable}
-                        onCellClick={event => console.log(data.standing[event])}
+                        onCellClick={event =>
+                            console.log(this.getTeamID(data.standing[event]))
+                        }
                     >
                         <TableHeader
                             displaySelectAll={this.state.showCheckboxes}

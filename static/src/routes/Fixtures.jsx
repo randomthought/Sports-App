@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import Divider from "material-ui/Divider";
-import { List, ListItem } from "material-ui/List";
-import { Card, CardActions, CardHeader, CardText } from "material-ui/Card";
-import FlatButton from "material-ui/FlatButton";
-import Paper from "material-ui/Paper";
+import { List } from "material-ui/List";
+import { Card, CardHeader, CardText } from "material-ui/Card";
 
 export default class Fixtures extends Component {
     state = {
@@ -15,22 +12,23 @@ export default class Fixtures extends Component {
             },
             propToggleHeader: {
                 margin: "20px auto 10px"
-            },
-            paperStye: {
-                margin: 10,
-                textAlign: "center"
             }
         },
         fixtures: []
     };
 
     componentDidMount() {
-        fetch("http://api.football-data.org/v1/teams/" + 66 + "/fixtures", {
-            method: "GET",
-            headers: {
-                "X-Auth-Token": "d7b8cab537374ee98c55d368fb7bc97c"
+        fetch(
+            "http://api.football-data.org/v1/teams/" +
+                this.props.teamID +
+                "/fixtures",
+            {
+                method: "GET",
+                headers: {
+                    "X-Auth-Token": "d7b8cab537374ee98c55d368fb7bc97c"
+                }
             }
-        })
+        )
             .then(results => {
                 return results.json();
             })
@@ -64,7 +62,6 @@ export default class Fixtures extends Component {
                     ));
 
                 this.setState({ fixtures: fixtures });
-                console.log(data);
             })
             .catch(error => {
                 console.error(error);

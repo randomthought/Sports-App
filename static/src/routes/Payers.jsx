@@ -2,15 +2,11 @@ import React, { Component } from "react";
 import {
     Table,
     TableBody,
-    TableFooter,
     TableHeader,
     TableHeaderColumn,
     TableRow,
     TableRowColumn
 } from "material-ui/Table";
-import TextField from "material-ui/TextField";
-import Toggle from "material-ui/Toggle";
-import Avatar from "material-ui/Avatar";
 import Paper from "material-ui/Paper";
 
 const styles = {
@@ -53,12 +49,17 @@ export default class Players extends Component {
     };
 
     componentDidMount() {
-        fetch("http://api.football-data.org/v1/teams/" + 66 + "/players", {
-            method: "GET",
-            headers: {
-                "X-Auth-Token": "d7b8cab537374ee98c55d368fb7bc97c"
+        fetch(
+            "http://api.football-data.org/v1/teams/" +
+                this.props.teamID +
+                "/players",
+            {
+                method: "GET",
+                headers: {
+                    "X-Auth-Token": "d7b8cab537374ee98c55d368fb7bc97c"
+                }
             }
-        })
+        )
             .then(results => {
                 return results.json();
             })

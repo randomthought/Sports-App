@@ -4,15 +4,9 @@ import AppBar from "material-ui/AppBar";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import Drawer from "material-ui/Drawer";
 import MenuItem from "material-ui/MenuItem";
-import { Route, Redirect, Link } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import LeageTable from "./routes/LeageTable.jsx";
-import Paper from "material-ui/Paper";
 import Team from "./routes/Team.jsx";
-
-const paperStyle = {
-    margin: 20,
-    textAlign: "center"
-};
 
 class App extends Component {
     constructor(props) {
@@ -44,9 +38,9 @@ class App extends Component {
                             <Link to="/table">Leage Table</Link>
                         </MenuItem>
                     </Drawer>
-                    <Route exact path="/" render={() => <LeageTable />} />
-                    <Route path="/table" render={() => <LeageTable />} />
-                    <Route path="/team" render={() => <Team />} />
+                    <Route exact path="/" component={LeageTable} />
+                    <Route path="/table" component={LeageTable} />
+                    <Route path="/team/:teamID" component={Team} />
                 </div>
             </MuiThemeProvider>
         );

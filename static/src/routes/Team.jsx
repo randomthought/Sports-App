@@ -47,12 +47,16 @@ export default class Team extends Component {
     };
 
     componentDidMount() {
-        fetch("http://api.football-data.org/v1/teams/" + 66, {
-            method: "GET",
-            headers: {
-                "X-Auth-Token": "d7b8cab537374ee98c55d368fb7bc97c"
+        fetch(
+            "http://api.football-data.org/v1/teams/" +
+                this.props.match.params.teamID,
+            {
+                method: "GET",
+                headers: {
+                    "X-Auth-Token": "d7b8cab537374ee98c55d368fb7bc97c"
+                }
             }
-        })
+        )
             .then(results => {
                 return results.json();
             })
@@ -79,10 +83,14 @@ export default class Team extends Component {
                         <Col xs={12}>
                             <Row start="xs">
                                 <Col xs={6}>
-                                    <Players teamID={66} />
+                                    <Players
+                                        teamID={this.props.match.params.teamID}
+                                    />
                                 </Col>
                                 <Col xs={6}>
-                                    <Fixtures teamID={66} />
+                                    <Fixtures
+                                        teamID={this.props.match.params.teamID}
+                                    />
                                 </Col>
                             </Row>
                         </Col>
