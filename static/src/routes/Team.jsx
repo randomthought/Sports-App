@@ -20,7 +20,7 @@ const pictures = {
         "https://i2-prod.manchestereveningnews.co.uk/incoming/article12211477.ece/ALTERNATES/s1200/GettyImages-624342376.jpg",
     "Tottenham Hotspur FC": "",
     "Chelsea FC":
-        "https://i2-prod.manchestereveningnews.co.uk/incoming/article12211477.ece/ALTERNATES/s1200/GettyImages-624342376.jpg",
+        "https://i2-prod.football.london/incoming/article14251243.ece/ALTERNATES/s1200/Eden-Hazard.jpg",
     "Arsenal FC": "http://nilepost.co.ug/wp-content/uploads/2018/02/arse.jpg",
     "Burnley FC": "http://1x2picks.co/wp-content/uploads/2016/07/Burnley.jpg",
     "Leicester City FC":
