@@ -8,6 +8,7 @@ import { Route } from "react-router-dom";
 import LeageTable from "./routes/LeageTable.jsx";
 import Team from "./routes/Team.jsx";
 import history from "./history.jsx";
+import Divider from "material-ui/Divider";
 
 export default class App extends Component {
     constructor(props) {
@@ -41,6 +42,7 @@ export default class App extends Component {
                             }}
                         >
                             Premier Leage Table
+                            <Divider />
                         </MenuItem>
                     </Drawer>
                     <Route exact path="/" component={LeageTable} />
